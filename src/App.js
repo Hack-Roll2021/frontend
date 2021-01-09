@@ -61,7 +61,7 @@ function App() {
         </div>
       </header>
       <Box mt="1em">
-        <Grid container direction="column" spacing={6}>
+        <Grid container direction="column">
           <Grid item>
             <Box mb="1em">Please enter the URL of the video you wish to analyze</Box>
             <Box display="flex" justifyContent="center" alignItems="start">
@@ -75,7 +75,7 @@ function App() {
             </Box>
           </Grid>
           {
-            loading ? <div><CircularProgress /></div> : null
+            loading ? <Box mt="1em"><CircularProgress /></Box> : null
           }
           <Grid item>
             {data &&
@@ -84,7 +84,9 @@ function App() {
                 const final = JSON.parse(jsonFormattedString)
                 return (
                   <Grid item>
-                    <Plot data={final.data} layout={final.layout} />
+                    <Box mt="2em">
+                      <Plot data={final.data} layout={final.layout} />
+                    </Box>
                   </Grid>
                 )
               })
