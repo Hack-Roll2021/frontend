@@ -3,7 +3,7 @@ import './App.css';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import { Button } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import Plotly from "plotly.js-basic-dist";
 import createPlotlyComponent from "react-plotly.js/factory";
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -52,17 +52,22 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <Grid container direction="column" spacing={6}>
-        <Grid item>
-          <div>Please enter the URL of the video you wish to analyze</div>
-          <TextField label="URL" variant="outlined" onChange={e => setUrl(e.target.value)}></TextField>
-          <Button variant="contained" color="primary"  onClick={() => onSubmit()}>Analyze</Button>
-        </Grid>
-        {
-          loading ? <div><CircularProgress /></div>: null
-        }
-        <Grid item>
-          { data && 
+      <Box mt="1em">
+        <Grid container direction="column" spacing={6}>
+          <Grid item>
+            <Box mb="1em">Please enter the URL of the video you wish to analyze</Box>
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <TextField size="small" label="URL" variant="outlined" onChange={e => setUrl(e.target.value)}></TextField>
+              <Box ml="1em">
+                <Button variant="contained" color="primary" onClick={() => onSubmit()}>Analyze</Button>
+              </Box>
+            </Box>
+          </Grid>
+          {
+            loading ? <div><CircularProgress /></div> : null
+          }
+          <Grid item>
+            {data &&
               Object.values(test).map(figure => {
                 const jsonFormattedString = figure.replace(/\\/g, "");
                 const final = JSON.parse(jsonFormattedString)
@@ -72,9 +77,10 @@ function App() {
                   </Grid>
                 )
               })
-          }
+            }
+          </Grid>
         </Grid>
-      </Grid>
+      </Box>
     </div>
   );
 }
