@@ -56,7 +56,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <div className="imgWrapper">
+          <img src={logo} className="App-logo" alt="logo" />
+        </div>
       </header>
       <Box mt="1em">
         <Grid container direction="column" spacing={6}>
