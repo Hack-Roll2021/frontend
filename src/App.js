@@ -77,7 +77,7 @@ function App() {
           }
           <Grid item>
             {data &&
-              Object.values(test).map(figure => {
+              Object.values(data).map(figure => {
                 const jsonFormattedString = figure.replace(/\\/g, "");
                 const final = JSON.parse(jsonFormattedString)
                 return (
